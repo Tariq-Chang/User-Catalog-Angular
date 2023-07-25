@@ -1,0 +1,126 @@
+<div class="container">
+  <a routerLink="users">&larr; Back to users</a>
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card text-center mt-4">
+        <img
+          class="profile-img img-fluid rounded-circle img-thumbnail mx-auto my-2"
+          width="100"
+          height="100"
+          [src]="response.results[0].imageUrl"
+          alt=""
+        />
+        <div class="card-body pt-0">
+          <div class="card-title fw-bold fs-4 my-0">
+            {{ response.results[0].firstName }}
+            {{ response.results[0].lastName }}
+          </div>
+          <p class="card-text my-0 text-secondary">
+            {{ response.results[0].username }}
+          </p>
+          <small class="card-text text-secondary" style="font-size: 12px">
+            ID: {{ response.results[0].uuid }}
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <div class="card mt-4">
+        <form class="form p-2 px-4">
+          <div class="d-flex align-items-center justify-content-between mt-3">
+            <label class="form-label flex-grow-1" for="firstname"
+              >First Name</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              style="width: 80%"
+              [value]="response.results[0].firstName"
+              [disabled]="mode === 'locked' ? true : false"
+            />
+          </div>
+          <div class="d-flex align-items-center justify-content-between">
+            <label class="form-label" for="lastname">Last Name</label>
+            <input
+              type="text"
+              class="form-control my-2"
+              style="width: 80%"
+              [value]="response.results[0].lastName"
+              [disabled]="mode === 'locked' ? true : false"
+            />
+          </div>
+          <div class="d-flex align-items-center justify-content-between">
+            <label class="form-label" for="dob">Date Of Birth</label>
+            <input
+              type="text"
+              class="form-control my-2"
+              style="width: 80%"
+              [disabled]="mode === 'locked' ? true : false"
+              value="{{
+                response.results[0].dateOfBirth | date : 'mediumDate'
+              }}"
+            />
+          </div>
+          <div class="d-flex align-items-center justify-content-between">
+            <label class="form-label" for="email">Email</label>
+            <input
+              type="email"
+              class="form-control my-2"
+              style="width: 80%"
+              [value]="response.results[0].email"
+              [disabled]="mode === 'locked' ? true : false"
+            />
+          </div>
+          <div class="d-flex align-items-center justify-content-between">
+            <label class="form-label" for="phone">Phone</label>
+            <input
+              type="text"
+              class="form-control my-2"
+              style="width: 80%"
+              [value]="response.results[0].phone"
+              [disabled]="mode === 'locked' ? true : false"
+            />
+          </div>
+          <div class="d-flex align-items-center justify-content-between">
+            <label class="form-label" for="gender">Gender</label>
+            <input
+              type="text"
+              class="form-control my-2"
+              style="width: 80%"
+              [value]="response.results[0].gender"
+              [disabled]="mode === 'locked' ? true : false"
+            />
+          </div>
+          <div class="d-flex align-items-center justify-content-between">
+            <label class="form-label" for="address">Address</label>
+            <input
+              type="text"
+              class="form-control my-2"
+              style="width: 80%"
+              [value]="response.results[0].address"
+              [disabled]="mode === 'locked' ? true : false"
+            />
+          </div>
+
+          <input
+            class="btn btn-primary my-2 me-auto mt-4"
+            type="button"
+            (click)="changeMode($event, mode)"
+            [value]="buttonText"
+            style="width: 150px"
+          />
+        </form>
+      </div>
+      <div class="card mt-4">
+        <div class="card-body">
+          <div class="card-title">User location</div>
+          <div
+            class="map-container"
+            id="map"
+            style="border: 5px solid seagreen"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
